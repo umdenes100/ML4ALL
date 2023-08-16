@@ -6,9 +6,10 @@ Machine learning material for Jetson nano and HPC starting Fall 2023
 1. Make sure you are at home directory: `cd ~`
 2. `git clone https://github.com/umdenes100/ML4ALL.git`
 3. `nano ~/.bashrc`
-4. At the bottom, add `alias iluvml='~/ML4ALL/ml4all.sh'`
-5. Save and exit nano: `ctrl+o` then `ctrl+x`
-6. Re-open shell.
+      1. Use vim if nano not installed
+5. At the bottom, add `alias iluvml='~/ML4ALL/ml4all.sh'`
+6. Save and exit nano: `ctrl+o` then `ctrl+x`
+7. Re-open shell.
 
 # Activity
 
