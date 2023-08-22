@@ -14,10 +14,18 @@ Machine learning material for Jetson nano and HPC starting Fall 2023
 
 # Activity
 
-1. Make sure USB camera is plugged in
-2. Type `enes100ml`
-3. Enter name and section
-5. Jupyter Notebook should start at unique mount point
+1. Plug in Jetson Power and connect Jetson serial cable to computer USB.
+2. Check Device Manger for `COM#`
+3. Open PuTTY
+4. Switch to Serial selection
+5. Type in the `COM#` from Device Manager
+6. Type in `115200` for speed
+7. Connect
+8. Login with u: `jetson` p: `jetson`
+9. Make sure USB camera is plugged in
+10. Type `enes100ml`
+11. Enter name and section
+12. Jupyter Notebook should start at unique mount point
          1. Will automatically create this mount point if does not previously exist. Otherwise, will go to existing one of same name.
 
 # Other Notes
