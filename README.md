@@ -38,3 +38,5 @@ To update Jetsons:
 
 Start Jupyter Notebook mounted on ML4ALL Repo
 1. `./ML4ALL/dev_nb.sh`
+
+Connect to wifi via cli: https://www.makeuseof.com/connect-to-wifi-with-nmcli/
