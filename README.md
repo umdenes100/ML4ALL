@@ -10,7 +10,7 @@ Machine learning material for Jetson nano and HPC starting Fall 2023
 5. At the bottom, add `alias enes100ml='~/ML4ALL/ml4all.sh'`
 6. Save and exit nano: `ctrl+o` then `ctrl+x`
       1. If vim, `escape` then `:wq`
-8. Re-open shell.
+8. `source ~/.bashrc` and test
 
 # Activity
 
