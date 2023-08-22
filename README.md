@@ -2,7 +2,7 @@
 Machine learning material for Jetson nano and HPC starting Fall 2023
 
 # Jetson Lesson Status
-1 & 2: Dev
+1 & 2: Dev   
 3: 08/22/23 Repo :white_check_mark: | Power/Serial Cable :x: | Cam :x: | Wifi :x: | Fan :x:   
 4. 08/22/23 Repo :white_check_mark: | Power/Serial Cable :x: | Cam :x: | Wifi :white_check_mark: | Fan :white_check_mark:   
 5. 08/22/23 Repo :white_check_mark: | Power/Serial Cable :white_check_mark: | Cam :white_check_mark: | Wifi :x: | Fan :x:   
