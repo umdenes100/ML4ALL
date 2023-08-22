@@ -14,9 +14,11 @@ Machine learning material for Jetson nano and HPC starting Fall 2023
 
 # Activity
 
-1. `enes100ml`
-2. Enter name and section
-3. Jupyter Notebook should start at unique mount point
+1. Make sure USB camera is plugged in
+2. Type `enes100ml`
+3. Enter name and section
+5. Jupyter Notebook should start at unique mount point
+         1. Will automatically create this mount point if does not previously exist. Otherwise, will go to existing one of same name.
 
 # Other Notes
 To update Jetsons:
