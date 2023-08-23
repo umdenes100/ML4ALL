@@ -62,3 +62,6 @@ Start Jupyter Notebook mounted on ML4ALL Repo
 
 Connect to wifi via cli: https://www.makeuseof.com/connect-to-wifi-with-nmcli/
 `sudo nmcli dev wifi connect VisionSystem1215-2.4`
+
+`sudo apt-get install sl`
+`sl`
