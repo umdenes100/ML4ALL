@@ -12,6 +12,7 @@ Machine learning material for Jetson nano and HPC starting Fall 2023
 21. 08/23/23 Repo :white_check_mark: | Power/Serial Cable :white_check_mark: | Cam :white_check_mark: | Wifi :white_check_mark: | Fan :x:  
 
 # Setup Instructions
+Connect to wifi: `sudo nmcli dev wifi connect VisionSystem1215-2.4`
 
 1. Make sure you are at home directory: `cd ~`
 2. `git clone https://github.com/umdenes100/ML4ALL.git`
