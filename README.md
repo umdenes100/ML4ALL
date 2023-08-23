@@ -13,6 +13,8 @@ Machine learning material for Jetson nano and HPC starting Fall 2023
 20. 08/23/23 Repo :white_check_mark: | Power/Serial Cable :white_check_mark: | Cam :white_check_mark: | Wifi :white_check_mark: | Fan :x:   
 21. 08/23/23 Repo :white_check_mark: | Power/Serial Cable :white_check_mark: | Cam :white_check_mark: | Wifi :white_check_mark: | Fan :x:  
 22. 08/23/23 Repo :white_check_mark: | Power/Serial Cable :white_check_mark: | Cam :white_check_mark: | Wifi :white_check_mark: | Fan :x:  
+23. 08/23/23 Repo :white_check_mark: | Power/Serial Cable :white_check_mark: | Cam :white_check_mark: | Wifi :white_check_mark: | Fan :x:  
+24. 08/23/23 Repo :white_check_mark: | Power/Serial Cable :white_check_mark: | Cam :white_check_mark: | Wifi :white_check_mark: | Fan :x:  
 
 # Setup Instructions
 Connect to wifi: `sudo nmcli dev wifi connect VisionSystem1215-2.4`
