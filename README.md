@@ -9,6 +9,9 @@ Machine learning material for Jetson nano and HPC starting Fall 2023
 6. 08/23/23 Repo :white_check_mark: | Power/Serial Cable :white_check_mark: | Cam :white_check_mark: | Wifi :white_check_mark: | Fan :x:   
 7. 08/23/23 Repo :white_check_mark: | Power/Serial Cable :white_check_mark: | Cam :white_check_mark: | Wifi :white_check_mark: | Fan :x:   
 
+20. 08/23/23 Repo :white_check_mark: | Power/Serial Cable :white_check_mark: | Cam :white_check_mark: | Wifi :white_check_mark: | Fan :x:   
+21. 08/23/23 Repo :white_check_mark: | Power/Serial Cable :white_check_mark: | Cam :white_check_mark: | Wifi :white_check_mark: | Fan :x:  
+
 # Setup Instructions
 
 1. Make sure you are at home directory: `cd ~`
