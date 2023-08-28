@@ -61,7 +61,8 @@ Connect to wifi: `sudo nmcli dev wifi connect VisionSystem1215-2.4`
 # Other Notes
 To update Jetsons:
 1. Push changes to `ML4ALL` repo
-2. `git pull` on all of the Jetsons
+2. `cd ML4ALL ; git pull` on all of the Jetsons
+`git pull` is run when students run `enes100ml`, so you may not need to manually `git pull` on every jetson
 
 Start Jupyter Notebook mounted on ML4ALL Repo
 1. `./ML4ALL/dev_nb.sh`
