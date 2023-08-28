@@ -3,7 +3,9 @@
 IFS= read -r -p 'Enter your name: ' name
 IFS= read -r -p 'Enter your section: ' sec
 
+name=${name// /_}
 echo "$name"
+sec=${sec// /_}
 echo "$sec"
 
 if [[ ! -d ~/ML4ALL/mount_points/${name}_${sec}/ ]]; then
