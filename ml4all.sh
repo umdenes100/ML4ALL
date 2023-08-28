@@ -1,8 +1,12 @@
 #!/bin/bash
 
-echo "Fetching latest from repo ..."
-cd ~/ML4ALL ; git pull || echo "git pull failed"
-echo "Done ..." ; echo ""
+if [ -z "$1" ] ; then
+	echo "Fetching latest from repo ..."
+	cd ~/ML4ALL ; git pull || echo "git pull failed"
+	echo "Done ..." ; echo ""
+else
+	echo "Skipping git pull"
+fi
 
 IFS= read -r -p 'Enter your name: ' name
 IFS= read -r -p 'Enter your section: ' sec
