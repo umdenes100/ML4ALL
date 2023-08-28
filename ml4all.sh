@@ -10,7 +10,6 @@ fi
 
 IFS= read -r -p 'Enter your name: ' name
 IFS= read -r -p 'Enter your section: ' sec
-
 name=${name// /_}
 sec=${sec// /_}
 
