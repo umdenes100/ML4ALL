@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo "Fetching latest from repo..."
-cd ~/ML4ALL ; git pull || echo "failed"
+echo "Fetching latest from repo ..."
+cd ~/ML4ALL ; git pull || echo "git pull failed"
 echo "Done ..." ; echo ""
 
 IFS= read -r -p 'Enter your name: ' name
