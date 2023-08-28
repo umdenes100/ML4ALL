@@ -5,7 +5,7 @@ if [ -z "$1" ] ; then
 	cd ~/ML4ALL ; git pull || echo "git pull failed"
 	echo "Done ..." ; echo ""
 else
-	echo "Skipping git pull"
+	echo "Skipping git pull" ; echo ""
 fi
 
 IFS= read -r -p 'Enter your name: ' name
