@@ -2,6 +2,7 @@
 
 echo "Fetching latest from repo..."
 cd ~/ML4ALL ; git pull || echo "failed"
+echo "Done ..." ; echo ""
 
 IFS= read -r -p 'Enter your name: ' name
 IFS= read -r -p 'Enter your section: ' sec
