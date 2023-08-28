@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd ~/ML4ALL ; git pull || echo "git pull failed"
+echo "Fetching latest from repo..."
+cd ~/ML4ALL ; git pull || echo "failed"
 
 IFS= read -r -p 'Enter your name: ' name
 IFS= read -r -p 'Enter your section: ' sec
