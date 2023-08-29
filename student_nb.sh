@@ -3,8 +3,7 @@ IFS= read -e -r -p 'Enter your section: ' sec
 name=${name// /_}
 sec=${sec// /_}
 
-echo "TESTING ONE TWO THREE (1) (2) (3)"
-echo "new line here pleas"
+echo "we the best musssic"
 
 export NVDLI_DOCKER_IMAGE_VER=v2.0.2-r32.7.1
 
