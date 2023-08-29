@@ -30,9 +30,11 @@ else
 fi
 
 if [ ${DEV_NB} = "1" ] ; then
+	echo "DEV SCRIPT!!!"
 	chmod +x ${DEV_SCRIPT_PATH}
 	${DEV_SCRIPT_PATH}
 else 
+	echo "STUDENT SCRIPT!!!"
 	chmod +x ${STUDENT_SCRIPT_PATH}
 	${DEV_SCRIPT_PATH}
 fi
