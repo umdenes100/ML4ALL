@@ -21,6 +21,9 @@ elif [ $1 = "nogit" ] ; then
 	echo "no git student"
 	DEV_NB=0
 	GIT_PULL_EN=0
+else
+	GIT_PULL_EN=1
+	DEV_NB=0
 fi
 
 if [ ${GIT_PULL_EN} = "1" ] ; then
