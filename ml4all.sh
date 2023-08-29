@@ -19,6 +19,7 @@ elif [ $1 = "dev" ] ; then
 	fi
 elif [ $1 = "nogit" ] ; then
 	echo "no git student"
+	DEV_NB=0
 	GIT_PULL_EN=0
 fi
 
