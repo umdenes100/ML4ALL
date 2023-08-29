@@ -15,7 +15,7 @@ else
 	echo "Skipping git pull" ; echo ""
 fi
 
-if [${DEV_NB} = "1"] ; then
+if [ ${DEV_NB} = "1" ] ; then
 	~/ML4ALL/dev_nb.sh
 else
 	~/ML4ALL/student_nb.sh
