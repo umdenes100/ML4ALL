@@ -8,7 +8,7 @@ if [ -z "$1" ] ; then
 	DEV_NB=0
 elif [ $1 = "dev" ] ; then
 	DEV_NB=1
-	if [ -z "$2" && $2 = "nogit" ] ; then
+	if [ -z "$2" ] && [ $2 = "nogit" ] ; then
 		GIT_PULL_EN=0
 	else
 		GIT_PULL_EN=1
