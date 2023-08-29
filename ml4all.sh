@@ -1,10 +1,10 @@
 #!/bin/bash
 
 if [ -z "$1" ] ; then
-	export GIT_PULL_EN=1
+	GIT_PULL_EN=1
 elif [ $1 = "dev" ] ; then
-	export GIT_PULL_EN=1
-	export DEV_NB=1
+	GIT_PULL_EN=1
+	DEV_NB=1
 fi
 
 if [ ${GIT_PULL_EN} = "1" ] ; then
