@@ -4,6 +4,7 @@ name=${name// /_}
 sec=${sec// /_}
 
 echo "WEEEWOOOOWEEEWOOO"
+echo "TESTING ONE TWO THREE (1) (2) (3)"
 
 export NVDLI_DOCKER_IMAGE_VER=v2.0.2-r32.7.1
 
