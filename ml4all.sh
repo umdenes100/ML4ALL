@@ -1,5 +1,8 @@
 #!/bin/bash
 
+export DEV_SCRIPT_PATH=~/ML4ALL/dev_nb.sh
+export STUDENT_SCRIPT_PATH=~/ML4ALL/student_nb.sh
+
 if [ -z "$1" ] ; then
 	GIT_PULL_EN=1
 	DEV_NB=0
@@ -23,7 +26,9 @@ else
 fi
 
 if [ ${DEV_NB} = "1" ] ; then
-	~/ML4ALL/dev_nb.sh
+	chmod +x ${DEV_SCRIPT_PATH}
+	${DEV_SCRIPT_PATH}
 else 
-	~/ML4ALL/student_nb.sh
+	chmod +x ${STUDENT_SCRIPT_PATH}
+	${DEV_SCRIPT_PATH}
 fi
