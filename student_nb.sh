@@ -4,6 +4,7 @@ name=${name// /_}
 sec=${sec// /_}
 
 echo "we the best musssic"
+echo "juice world did"
 
 export NVDLI_DOCKER_IMAGE_VER=v2.0.2-r32.7.1
 
