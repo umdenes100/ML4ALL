@@ -39,8 +39,7 @@ Connect to wifi: `sudo nmcli dev wifi connect VisionSystem1215-2.4`
       1. If vim, `escape` then `:wq`
 8. `source ~/.bashrc` and test
 
-# Infrastructure Description
-
+# Software Infrastructure Description
 ## ml4all.sh script
 
 ### Alias   
@@ -74,6 +73,8 @@ There are a few options to run
 14. p: `dlinano`
 15. Select an activity and begin!
 16. If disconnected, do the same steps, including same name/section in step 11, to get to the same mount point
+
+# Debugging Notes
 
 # Optional
 `sudo apt-get install sl`
