@@ -1,7 +1,6 @@
 #!/bin/bash
 
-git config --unset core.filemode
-git config --global core.filemode false
+cd ~ML4ALL/ && git config --unset core.filemode && git config --global core.filemode false
 
 export DEV_SCRIPT_PATH=~/ML4ALL/dev_nb.sh
 export STUDENT_SCRIPT_PATH=~/ML4ALL/student_nb.sh
