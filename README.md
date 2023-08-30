@@ -65,7 +65,7 @@ There are a few options to run
 
 
 # Jetson Lesson Status
-Last Updated: 08/23/23
+Last Updated: 08/23/23       
 1 & 2: Dev   
 3: 08/22/23 Repo :white_check_mark: | Power/Serial Cable :x: | Cam :x: | Wifi :x: | Fan :x:   
 4. 08/22/23 Repo :white_check_mark: | Power/Serial Cable :x: | Cam :x: | Wifi :white_check_mark: | Fan :white_check_mark:   
