@@ -20,7 +20,8 @@ Connect to wifi: `sudo nmcli dev wifi connect VisionSystem1215-2.4`
 Students will type the command `enes100ml` in the Jetson terminal. Based on setup step 5, this is aliased to the `ml4all.sh` script in the repo.   
 
 ### What it does
-The script will first update the activity by running a `git pull`. Then, it will prompt students for their name and section, and then create a directory for this. From there, it will launch a jupyter notebook mounted at that directory.
+The script will first update the activity by running a `git pull`. Then, it will go to one of two scripts, likely the student script, which will prompt students for their name and section, and then create a directory for this. From there, it will launch a jupyter notebook mounted at that directory.     
+The two scipts are `student_nb.sh` and `dev_nb.sh`, the first of which will run for students and the second will run for development. See Options section below.
 
 ### Options   
 There are a few options to run
@@ -55,7 +56,7 @@ There are a few options to run
 | Error | Fix | 
 | ----- | ----- | 
 | `docker: Error response from daemon: error gathering device information while adding custom device "/dev/video0": no such file or directory.` | Webcam not recognized - plug in if not, or unplug and plug back in, and try again | 
-| `RuntimeError: Could not initialize camera.  Please see error trace.` or `RuntimeError: Could not read image from camera.` | Multiple camera instances are up. You MUST shutdown and restart kernel between notebooks due to camrea singleton. First, shutdown the active kernals: ![image](https://github.com/umdenes100/ML4ALL/assets/99224714/bba70584-a5b3-46c0-8a27-2eecfc3e0bee) .      Next, restart the kernel using the ![image](https://github.com/umdenes100/ML4ALL/assets/99224714/887301b2-1686-464a-95be-5167923d53e2) button at the top of the notebook. |
+| `RuntimeError: Could not initialize camera.  Please see error trace.` or `RuntimeError: Could not read image from camera.` | Multiple camera instances are up. You MUST shutdown and restart kernel between notebooks due to camrea singleton. First, shutdown the active kernals: ![image](https://github.com/umdenes100/ML4ALL/assets/99224714/bba70584-a5b3-46c0-8a27-2eecfc3e0bee) .      Next, restart the kernel using the ![image](https://github.com/umdenes100/ML4ALL/assets/99224714/887301b2-1686-464a-95be-5167923d53e2) button at the top of the notebook. |  
 
 
 
