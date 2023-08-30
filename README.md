@@ -35,23 +35,24 @@ There are a few options to run
 # Activity Instructions
 
 1. Plug in Jetson Power and connect Jetson serial cable to computer USB.
-2. Check Device Manger for `COM#`
+2. Check Device Manger for `COM#` (should be under Ports (COM & LPT) or something similar)    
 3. Open PuTTY
 4. Switch to Serial selection
 5. Type in the `COM#` from Device Manager
 6. Type in `115200` for speed
 7. Connect
-8. Login with u: `jetson` p: `jetson`
-9. Make sure USB camera is plugged in
-10. Type `enes100ml`
-11. Enter name and section
-12. Jupyter Notebook should start at unique mount point
+8. ![image](https://github.com/umdenes100/ML4ALL/assets/99224714/b237908f-3fdc-4bfa-ad2c-a8080693e28b)     
+9. Login with u: `jetson` p: `jetson`
+10. Make sure USB camera is plugged in
+11. Type `enes100ml`
+12. Enter name and section
+13. Jupyter Notebook should start at unique mount point
       1. Will automatically create this mount point if does not previously exist. Otherwise, will go to existing one of same name.
-13. In browser, go to `192.168.55.1:8888`
-14. p: `dlinano`
-15. Select an activity and begin!
-16. If disconnected, do the same steps, including same name/section in step 11, to get to the same mount point
-17. **IMPORTANT:** When switching between activities, SHUT DOWN then RESTART the Python Kernel!
+14. In browser, go to `192.168.55.1:8888`
+15. p: `dlinano`
+16. Select an activity and begin!
+17. If disconnected, do the same steps, including same name/section in step 11, to get to the same mount point
+18. **IMPORTANT:** When switching between activities, SHUT DOWN then RESTART the Python Kernel!
 
 # Debugging Notes
 
