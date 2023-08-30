@@ -17,7 +17,7 @@ Connect to wifi: `sudo nmcli dev wifi connect VisionSystem1215-2.4`
 ## ml4all.sh script
 
 ### Alias   
-Students will type the command `enes100ml` in the Jetson terminal. Based on setup step 5, this is aliased to the `ml4all.sh` script in the repo.   
+Students will type the command `enes100ml` in the Jetson terminal. Based on setup step 4, this is aliased to the `ml4all.sh` script in the repo.   
 
 ### What it does
 The script will first update the activity by running a `git pull`. Then, it will go to one of two scripts, likely the student script, which will prompt students for their name and section, and then create a directory for this. From there, it will launch a jupyter notebook mounted at that directory.     
