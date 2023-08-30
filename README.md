@@ -27,7 +27,10 @@ The two scipts are `student_nb.sh` and `dev_nb.sh`, the first of which will run 
 There are a few options to run
 1. `enes100ml dev` will launch a jupyter notebook using the repo (`~/ML4ALL`) as a mount point. To be used for development.   
 2. `enes100ml nogit` will launch the jupyter notebook, but skipping the git pull.
-3. `enes100ml dev nogit` is a combo of the last two.   
+3. `enes100ml dev nogit` is a combo of the last two.    
+
+![Untitled](https://github.com/umdenes100/ML4ALL/assets/99224714/7ca94f65-dfab-40dd-8bbf-030c990bcb34)
+
 
 # Activity Instructions
 
