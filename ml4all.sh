@@ -31,8 +31,7 @@ else
 	echo "Skipping git pull" ; echo ""
 fi
 
-echo "Git hash: "
-git rev-parse HEAD
+echo "Git hash: " ; git rev-parse HEAD ; echo ""
 
 if [ ${DEV_NB} = "1" ] ; then
 	chmod +x ${DEV_SCRIPT_PATH}
