@@ -31,7 +31,7 @@ else
 	echo "Skipping git pull" ; echo ""
 fi
 
-echo -e "Git hash: "
+echo "Git hash: "
 git rev-parse HEAD
 
 if [ ${DEV_NB} = "1" ] ; then
