@@ -1,4 +1,4 @@
-![image](https://github.com/umdenes100/ML4ALL/assets/99224714/087f7e3b-4b3c-4a71-9355-4782c0f426cb)# ML4ALL
+# ML4ALL
 Machine learning material for Jetson nano and HPC starting Fall 2023
 
 # Jetson Setup Instructions
