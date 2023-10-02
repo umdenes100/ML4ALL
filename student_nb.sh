@@ -8,7 +8,7 @@ export NVDLI_DOCKER_IMAGE_VER=v2.0.2-r32.7.1
 if [[ ! -d ~/ML4ALL/mount_points/${name}_${sec}/ ]]; then
 	echo "Mount point not found - creating ..."
 	mkdir -p ~/ML4ALL/mount_points/${name}_${sec}/
-	cp -r ~/ML4ALL/lesson_material/* ~/ML4ALL/mount_points/${name}_${sec}
+	cp -r ~/ML4ALL/$1/* ~/ML4ALL/mount_points/${name}_${sec}
 else
 	echo "Mount point already exists!"
 fi
