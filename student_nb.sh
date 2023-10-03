@@ -13,6 +13,11 @@ else
 	echo "Mount point already exists!"
 fi
 
+DEVICE=""
+if [ $1 = "lesson_material" ]; then
+	DEVICE="--device /dev/video0"
+fi
+
 echo "Starting Docker with image ${NVDLI_DOCKER_IMAGE_VER}"
 echo "RECOMMENDED: Serial connection @ 192.168.55.1:8888 (password dlinano)"
-sudo docker run --runtime nvidia -it --rm --network host --volume ~/ML4ALL/mount_points/${name}_${sec}/:/nvdli-nano/ --device /dev/video0 nvcr.io/nvidia/dli/dli-nano-ai:${NVDLI_DOCKER_IMAGE_VER}
+sudo docker run --runtime nvidia -it --rm --network host --volume ~/ML4ALL/mount_points/${name}_${sec}/:/nvdli-nano/ ${DEVICE} nvcr.io/nvidia/dli/dli-nano-ai:${NVDLI_DOCKER_IMAGE_VER}

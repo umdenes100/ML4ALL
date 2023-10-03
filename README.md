@@ -6,12 +6,8 @@ Connect to wifi: `sudo nmcli dev wifi connect VisionSystem1215-2.4`
 
 1. Make sure you are at home directory: `cd ~`
 2. `git clone https://github.com/umdenes100/ML4ALL.git`
-3. `nano ~/.bashrc`
-      1. Use vim if nano not installed
-5. At the bottom, add `alias enes100ml='~/ML4ALL/ml4all.sh'`
-6. Save and exit nano: `ctrl+o` then `ctrl+x`
-      1. If vim, `escape` then `:wq`
-8. `source ~/.bashrc` and test
+3. `source ML4ALL/setup.sh`
+4. Test with `enes100ml`
 
 # Software Infrastructure Description
 ## ml4all.sh script

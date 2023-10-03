@@ -1,2 +1,4 @@
 mount_points/*
 *.ipynb_checkpoints*
+*__pycache__*
+*thumbs_A*
