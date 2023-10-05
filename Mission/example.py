@@ -1,21 +1,23 @@
 import torch
 import torchvision
 import torch.nn.functional as F
+import JetsonWSClient
 
 print('setup...')
-categories = ['rocks', 'orzo']
+categories = ['orzo', 'rocks']
 device = torch.device('cuda')
 model = torchvision.models.resnet18(pretrained=True)
-model.fc = torch.nn.Linear(512, 2)
+model.fc = torch.nn.Linear(512, len(categories))
 model = model.to(device)
-model.load_state_dict(torch.load('we_ball.pth'))
-model.eval()
+state_dict = torch.load('we_ball.pth')
+model.load_state_dict(state_dict)
 print('setup complete!')
 
-
 def handler(image):
-    output = model(image)
-    output = F.softmax(output, dim=1).detach().cpu().numpy().flatten()
+    with torch.no_grad():
+        model.eval()
+        result = model(image)
+    output = F.softmax(result, dim=1).detach().cpu().numpy().flatten()
     for i, score in enumerate(list(output)):
         print(str(i) + " " + str(score))
     print(categories[output.argmax()])
