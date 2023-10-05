@@ -22,9 +22,11 @@ For the mission, students will type "mission" as an option.
 
 ### Options   
 There are a few options to run
-1. `enes100ml dev` will launch a jupyter notebook using the repo (`~/ML4ALL`) as a mount point. To be used for development.   
-2. `enes100ml nogit` will launch the jupyter notebook, but skipping the git pull.
-3. `enes100ml dev nogit` is a combo of the last two.    
+1. `dev` wil launch a jupyter notebook using the repo (`~/ML4ALL`) as a mount point. To be used for development.   
+2. `nogit` will launch the jupyter notebook, but skipping the git pull.
+3. `mission` will copy code from the mission material instead of the lesson material.
+
+Note: Any combination of the above commands will work EXCEPT for `dev` and `mission` together.
 
 ***NOTE THIS DIAGRAM IS OUTDATED AND DOES NOT INCLUDE MISSION OPTIONS - TOOD UPDATE THIS DIAGRAM***
 
@@ -63,7 +65,9 @@ There are a few options to run
 | If were are issues with the files, directory, etc. **Or if enes100ml does not do anything** (i.e. it says something is missing, fails to find a command, etc.), just redownload the repo. | 1. `sudo rm -r ~/ML4ALL` 2. `git clone https://github.com/umdenes100/ML4ALL.git` |    
 | If `enes100ml` is not recognized | Instead, run `~/ML4ALL/ml4all.sh` |    
 
+# Training Script with ESPCAM
 
+A common issue you may run into is the ESPCAM losing power. When this happens, re-run the ***THIRD CODE BLOCK*** only and then re-run the last block, and the cam should be restarted. ***A KERNEL RESET MAY BE NECESSARY TOO***, but hopefully not.
 
 # Jetson Lesson Status
 See document:
