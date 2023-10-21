@@ -11,6 +11,7 @@ if [[ ! -d ~/ML4ALL/mount_points/${name}_${sec}/ ]]; then
 	cp -r ~/ML4ALL/$1/* ~/ML4ALL/mount_points/${name}_${sec}/
 else
 	echo "Mount point already exists!"
+	#TODO UPDATE HANDLING !
 fi
 
 DEVICE=""
