@@ -8,42 +8,30 @@ import PIL.Image
 import numpy as np
 import io
 import cv2
-'''
-import torch
-import torchvision.transforms as transforms
-import torch.nn.functional as F
-
-mean = torch.Tensor([0.485, 0.456, 0.406]).cuda()
-std = torch.Tensor([0.229, 0.224, 0.225]).cuda()
-
-
-def preprocess(image):
-    device = torch.device('cuda')
-    image_str = io.BytesIO(image)
-    #image_str = PIL.Image.frombytes(data=image_str,mode='RGB',size=(224,224),decoder_name='jpeg')
-    picture = PIL.Image.open(image_str)
-    picture.save('./curr.jpeg','JPEG')
-    #print(picture.format)
-    #picture.show()
-    
-    image = transforms.functional.to_tensor(picture).to(device)
-    image.sub_(mean[:, None, None]).div_(std[:, None, None])
-    return image[None, ...]
-'''
+from utils import preprocess, Hex_RGB
 
 class JetsonClient:
     # See first line of this file if you want to edit this function
     def on_message(self, _, message):
-        print(message)
+        #print(message)
         message = json.loads(message)
         if message['op'] == 'prediction_request':
-            losBytes = bytes.fromhex(message['image'])
+            #losBytes = bytes.fromhex(message['image'])
             print('entering preprocess')
-            deserialized_bytes = np.frombuffer(losBytes, dtype=np.int8)
-            deserialized_x = np.reshape(deserialized_bytes, newshape=(2, 2))
-            preprocessed = preprocess(deserialized_x)
+            dsbytes = []
+            print(message['image'])
+            for i in range(0,len(message['image']),2):
+                tens = message['image'][i]
+                ones = message['image'][i+1]
+                tot = tens + ones
+                print(tot)
+                dsbytes.append(Hex_RGB(tot))
+            #deserialized_bytes = np.frombuffer(losBytes, dtype=np.int8)
+            #deserialized_x = np.reshape(deserialized_bytes, newshape=(224, 224))
+            #preprocessed = preprocess(deserialized_bytes)
+            print(dsbytes)
             print('entering handler')
-            results = self.handler(preprocessed)
+            results = self.handler(dsbytes)
             print('sending')
             self.ws.send(json.dumps({
                 "op": "prediction_results",

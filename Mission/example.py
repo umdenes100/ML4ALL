@@ -13,6 +13,7 @@ state_dict = torch.load('we_ball.pth')
 model.load_state_dict(state_dict)
 print('setup complete!')
 
+'''
 def handler(image):
     with torch.no_grad():
         model.eval()
@@ -22,6 +23,13 @@ def handler(image):
         print(str(i) + " " + str(score))
     print(categories[output.argmax()])
     return output.argmax()
+'''
 
-client = JetsonWSClient.JetsonClient(handler, 'Team Name')
+x = 0
+
+def handler(image):
+    x += 1
+    return x
+
+client = JetsonWSClient.JetsonClient(handler, 'Hi Hello')
 client.ws.run_forever()

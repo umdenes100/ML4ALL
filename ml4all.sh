@@ -8,15 +8,24 @@ export STUDENT_SCRIPT_PATH=~/ML4ALL/student_nb.sh
 DEV=0
 GIT=1
 CPFROM="lesson_material"
+export MPUPDATE=0
+export RESTORE=0
 
 for i in $@
 do 
-    if [ $i = "dev" ]; then
+	if [ $i = "list" ]; then
+		ls ~/ML4ALL/mount_points/
+		exit 0
+	elif [ $i = "restore" ]; then
+		export RESTORE=1
+	elif [ $i = "dev" ]; then
 		DEV=1
 	elif [ $i = "nogit" ]; then
 		GIT=0
 	elif [ $i = "mission" ]; then
 		CPFROM="mission_material"
+	elif [ $i = "update" ]; then
+		export MPUPDATE=1
 	fi
 done
 
