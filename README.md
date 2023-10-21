@@ -6,30 +6,29 @@ Connect to wifi: `sudo nmcli dev wifi connect VisionSystem1215-2.4`
 
 1. Make sure you are at home directory: `cd ~`
 2. `git clone https://github.com/umdenes100/ML4ALL.git`
-3. `nano ~/.bashrc`
-      1. Use vim if nano not installed
-4. At the bottom, add `alias enes100ml='~/ML4ALL/ml4all.sh'`
-5. Save and exit nano: `ctrl+o` then `ctrl+x`
-      1. If vim, `escape` then `:wq`
-6. `source ~/.bashrc` and test
-
-TODO Make the vim step a bash source
+3. `source ML4ALL/setup.sh`
+4. Test with `enes100ml`
 
 # Software Infrastructure Description
 ## ml4all.sh script
 
 ### Alias   
-Students will type the command `enes100ml` in the Jetson terminal. Based on setup step 4, this is aliased to the `ml4all.sh` script in the repo.   
+Students will type the command `enes100ml` in the Jetson terminal. Based on setup step 3, this is aliased to the `ml4all.sh` script in the repo.   
 
 ### What it does
 The script will first update the activity by running a `git pull`. Then, it will go to one of two scripts, likely the student script, which will prompt students for their name and section, and then create a directory for this. From there, it will launch a jupyter notebook mounted at that directory.     
 The two scipts are `student_nb.sh` and `dev_nb.sh`, the first of which will run for students and the second will run for development. See Options section below.
+For the mission, students will type "mission" as an option.
 
 ### Options   
 There are a few options to run
-1. `enes100ml dev` will launch a jupyter notebook using the repo (`~/ML4ALL`) as a mount point. To be used for development.   
-2. `enes100ml nogit` will launch the jupyter notebook, but skipping the git pull.
-3. `enes100ml dev nogit` is a combo of the last two.    
+1. `dev` wil launch a jupyter notebook using the repo (`~/ML4ALL`) as a mount point. To be used for development.   
+2. `nogit` will launch the jupyter notebook, but skipping the git pull.
+3. `mission` will copy code from the mission material instead of the lesson material.
+
+Note: Any combination of the above commands will work EXCEPT for `dev` and `mission` together.
+
+***NOTE THIS DIAGRAM IS OUTDATED AND DOES NOT INCLUDE MISSION OPTIONS - TOOD UPDATE THIS DIAGRAM***
 
 ![Untitled](https://github.com/umdenes100/ML4ALL/assets/99224714/7ca94f65-dfab-40dd-8bbf-030c990bcb34)
 
@@ -66,6 +65,8 @@ There are a few options to run
 | If were are issues with the files, directory, etc. **Or if enes100ml does not do anything** (i.e. it says something is missing, fails to find a command, etc.), just redownload the repo. | 1. `sudo rm -r ~/ML4ALL` 2. `git clone https://github.com/umdenes100/ML4ALL.git` |    
 | If `enes100ml` is not recognized | Instead, run `~/ML4ALL/ml4all.sh` |    
 
+
+A common issue you may run into is the ESPCAM losing power. When this happens, re-run the ***THIRD CODE BLOCK*** only and then re-run the last block, and the cam should be restarted. ***A KERNEL RESET MAY BE NECESSARY TOO***, but hopefully not.
 
 # Jetson Lesson Status
 See document:
