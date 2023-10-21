@@ -65,7 +65,6 @@ Note: Any combination of the above commands will work EXCEPT for `dev` and `miss
 | If were are issues with the files, directory, etc. **Or if enes100ml does not do anything** (i.e. it says something is missing, fails to find a command, etc.), just redownload the repo. | 1. `sudo rm -r ~/ML4ALL` 2. `git clone https://github.com/umdenes100/ML4ALL.git` |    
 | If `enes100ml` is not recognized | Instead, run `~/ML4ALL/ml4all.sh` |    
 
-# Training Script with ESPCAM
 
 A common issue you may run into is the ESPCAM losing power. When this happens, re-run the ***THIRD CODE BLOCK*** only and then re-run the last block, and the cam should be restarted. ***A KERNEL RESET MAY BE NECESSARY TOO***, but hopefully not.
 
