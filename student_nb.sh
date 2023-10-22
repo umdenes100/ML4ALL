@@ -1,3 +1,6 @@
+#!/bin/bash
+shopt -s extglob
+
 IFS= read -e -r -p 'Enter your name: ' name
 IFS= read -e -r -p 'Enter your section: ' sec
 name=${name// /_}
@@ -11,7 +14,28 @@ if [[ ! -d ~/ML4ALL/mount_points/${name}_${sec}/ ]]; then
 	cp -r ~/ML4ALL/$1/* ~/ML4ALL/mount_points/${name}_${sec}/
 else
 	echo "Mount point already exists!"
-	#TODO UPDATE HANDLING !
+	if [ ${SAVE} = "1" ] ; then
+		cd ~/ML4ALL/mount_points/
+		zip -r ~/backup_${name}_${sec}.zip ${name}_${sec}/*
+		echo -e "On your personal computer, use scp to get zip file.\n Example (Windows): scp jetbot@<IP_ADDR_OF_JETSON>:/home/jetbot/file.zip C:/Users/<USER_NAME>/Desktop"
+		exit 0
+	elif [ ${MPUPDATE} = "1" ] ; then
+		echo "UPDATE OPTION USED - IMPORTANT INFO : "
+		echo "--------------------------------------"
+		echo -e "It is recommended you save a copy of your code base in case this command messes something up.\n Use enes100ml save to save a zip file - then on your local machine, use scp to get file.\n Example (Windows): scp jetbot@<IP_ADDR_OF_JETSON>:/home/jetbot/file.zip C:/Users/<USER_NAME>/Desktop"
+		echo "--------------------------------------"
+		read -r -p "Are you sure? [y/N] " response
+		case "$response" in
+			[yY][eE][sS]|[yY])
+				cp ~/ML4ALL/mount_points/${name}_${sec}/ML_Live/example.py ~/ML4ALL/mount_points/${name}_${sec}/ML_Live/YOUR_OLD_example.py 
+				tar -cpC ~/ML4ALL/$1 . | tar -xpC ~/ML4ALL/mount_points/${name}_${sec}
+				;;
+			*)
+				echo "exiting update..."
+				;;
+		esac
+		exit 0
+	fi
 fi
 
 DEVICE=""
