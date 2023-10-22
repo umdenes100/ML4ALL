@@ -23,6 +23,7 @@ else
 		echo "UPDATE OPTION USED - IMPORTANT INFO : "
 		echo "--------------------------------------"
 		echo -e "It is recommended you save a copy of your code base in case this command messes something up.\n Use enes100ml save to save a zip file - then on your local machine, use scp to get file.\n Example (Windows): scp jetbot@<IP_ADDR_OF_JETSON>:/home/jetbot/file.zip C:/Users/<USER_NAME>/Desktop"
+		echo "IN ADDITION!!! MAKE SURE YOU ARE USING MISSION OPTION AS WELL!!! USE enes100ml mission update"
 		echo "--------------------------------------"
 		read -r -p "Are you sure? [y/N] " response
 		case "$response" in
