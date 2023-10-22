@@ -9,15 +9,16 @@ DEV=0
 GIT=1
 CPFROM="lesson_material"
 export MPUPDATE=0
-export RESTORE=0
+export SAVE=0
 
 for i in $@
 do 
 	if [ $i = "list" ]; then
 		ls ~/ML4ALL/mount_points/
 		exit 0
-	elif [ $i = "restore" ]; then
-		export RESTORE=1
+	elif [ $i = "save" ]; then
+		export SAVE=1
+		echo "save - update command will only work if mount point exists"
 	elif [ $i = "dev" ]; then
 		DEV=1
 	elif [ $i = "nogit" ]; then
@@ -26,6 +27,7 @@ do
 		CPFROM="mission_material"
 	elif [ $i = "update" ]; then
 		export MPUPDATE=1
+		echo "note - update command will only work if mount point exists"
 	fi
 done
 
