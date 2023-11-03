@@ -11,6 +11,26 @@ CPFROM="lesson_material"
 export MPUPDATE=0
 export SAVE=0
 
+if [ $1 = "wifi" ] ; then
+	if [ $2 = "show" ] ; then
+		# todo test
+		iwgetid -r
+		# or nmcli -t -f active,ssid dev wifi | egrep '^yes' | cut -d\' -f2
+	elif [ $2 = "con" ] ; then
+		if [ $3 = "1116" ] ; then
+			sudo nmcli device wifi connect VisionSystem1116-2.4
+		elif [ $3 = "1215" ] ; then
+			sudo nmcli device wifi connect VisionSystem1215-2.4
+		else
+			echo "Invalid 3rd argument - please pass 1116 or 1215"
+		fi
+	else 
+		echo "wifi command options:"
+		echo "show - display current wifi information"
+		echo "con - connect to a network. Valid inputs: wifi con 1116, wifi con 1215"
+	fi
+	exit 0
+
 for i in $@
 do 
 	if [ $i = "list" ]; then
