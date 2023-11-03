@@ -1,5 +1,6 @@
 #include "esp_camera.h"
 #include <WiFi.h>
+#include <ESPmDNS.h>
 
 //
 // WARNING!!! PSRAM IC required for UXGA resolution and high JPEG quality
@@ -21,10 +22,22 @@
 
 const char* ssid = "VisionSystem1215-2.4";
 
+WiFiServer server(80);
+#define IP_ID 200
+#define ROOM_ID 1116 
+
+#define mDNS_ID "cam1116-200" // todo better way of doing this lmao
+
+#if ROOM_ID == 1116  //big lab
+#define WIFI_NETWORK "VisionSystem1116-2.4"
+#elif ROOM_ID == 1215 //small Lab
+#define WIFI_NETWORK "VisionSystem1215-2.4"
+#endif
+
 void startCameraServer();
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(115200);//, SERIAL_8N1, 4, 2, 0, 20000UL);
   Serial.setDebugOutput(true);
   Serial.println();
 
@@ -89,7 +102,15 @@ void setup() {
   s->set_hmirror(s, 1);
 #endif
 
-  WiFi.begin(ssid);
+  IPAddress local_IP(192,168,1,IP_ID);
+  IPAddress gateway(192,168,1,1);
+  IPAddress subnet(255,255,255,0);
+
+  if (!WiFi.config(local_IP, gateway, subnet)) {
+    Serial.println("ruh roh static ip");
+  }
+
+  WiFi.begin(WIFI_NETWORK);
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
@@ -103,6 +124,17 @@ void setup() {
   Serial.print("Camera Ready! Use 'http://");
   Serial.print(WiFi.localIP());
   Serial.println("' to connect");
+
+  if (!MDNS.begin(mDNS_ID)) {
+    Serial.println("ruh roh MDNS");
+    while(1);
+  }
+  Serial.println("yippie MDNS");
+
+  server.begin();
+  Serial.println("TCP Server started");
+  
+  MDNS.addService("http","tcp",80);
 }
 
 void loop() {
