@@ -11,18 +11,33 @@ CPFROM="lesson_material"
 export MPUPDATE=0
 export SAVE=0
 
-if [ $1 = "wifi" ] ; then
-	if [ $2 = "show" ] ; then
-		# todo test
-		iwgetid -r
-		# or nmcli -t -f active,ssid dev wifi | egrep '^yes' | cut -d\' -f2
-	elif [ $2 = "con" ] ; then
-		if [ $3 = "1116" ] ; then
-			sudo nmcli device wifi connect VisionSystem1116-2.4
-		elif [ $3 = "1215" ] ; then
-			sudo nmcli device wifi connect VisionSystem1215-2.4
-		else
-			echo "Invalid 3rd argument - please pass 1116 or 1215"
+if [ $# -gt 0 ] && [ $1 = "wifi" ] ; then
+	if [ $# -gt 1 ] ; then
+		if [ $2 = "show" ] ; then
+			# todo test
+			echo "current connection: "
+			iwgetid -r
+			echo "wlan0 info: "
+			ifconfig wlan0
+			if [ $# -gt 2 ] && [ $3 = "all" ] ; then
+				echo "all available connections:"
+				nmcli dev wifi
+			fi
+			# or nmcli -t -f active,ssid dev wifi | egrep '^yes' | cut -d\' -f2
+		elif [ $2 = "con" ] ; then
+			if [ $# -gt 2 ] ; then
+				if [ $3 = "1116" ] ; then
+					sudo nmcli device wifi connect VisionSystem1116-2.4
+				elif [ $3 = "1215" ] ; then
+					sudo nmcli device wifi connect VisionSystem1215-2.4
+				elif [ $3 = "down" ] ; then
+					echo "run: sudo nmcli con down VisionSystem<ID>-2.4"
+				else
+					echo "Invalid 3rd argument - please pass 1116 or 1215"
+				fi
+			else
+				echo "please enter 1116 or 1215 after con"
+			fi
 		fi
 	else 
 		echo "wifi command options:"
@@ -30,6 +45,7 @@ if [ $1 = "wifi" ] ; then
 		echo "con - connect to a network. Valid inputs: wifi con 1116, wifi con 1215"
 	fi
 	exit 0
+fi
 
 for i in $@
 do 
