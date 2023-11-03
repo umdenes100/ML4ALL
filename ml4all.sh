@@ -38,7 +38,7 @@ do
 		exit 0
 	elif [ $i = "save" ]; then
 		export SAVE=1
-		echo "save - update command will only work if mount point exists"
+		echo "note - save command will only work if mount point exists"
 	elif [ $i = "dev" ]; then
 		DEV=1
 	elif [ $i = "nogit" ]; then
