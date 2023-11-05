@@ -31,7 +31,8 @@ if [ $# -gt 0 ] && [ $1 = "wifi" ] ; then
 				elif [ $3 = "1215" ] ; then
 					sudo nmcli device wifi connect VisionSystem1215-2.4
 				elif [ $3 = "down" ] ; then
-					echo "run: sudo nmcli con down VisionSystem<ID>-2.4"
+					network=$(iwgetid -r)
+					sudo nmcli con down ${network}\ 1
 				else
 					echo "Invalid 3rd argument - please pass 1116 or 1215"
 				fi
