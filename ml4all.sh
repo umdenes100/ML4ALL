@@ -17,7 +17,7 @@ if [ $# -gt 0 ] && [ $1 = "wifi" ] ; then
 			# todo test
 			echo "current connection: "
 			iwgetid -r
-			echo "wlan0 info: "
+			echo "wlan0 info (ip shown after inet):"
 			ifconfig wlan0
 			if [ $# -gt 2 ] && [ $3 = "all" ] ; then
 				echo "all available connections:"
@@ -46,6 +46,7 @@ if [ $# -gt 0 ] && [ $1 = "wifi" ] ; then
 		echo "show - display current wifi information"
 		echo "con - connect to a network. Valid inputs: wifi con 1116, wifi con 1215"
 	fi
+	python ip_display/ip_startup.py
 	exit 0
 fi
 
