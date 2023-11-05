@@ -26,6 +26,7 @@ if [ $# -gt 0 ] && [ $1 = "wifi" ] ; then
 			# or nmcli -t -f active,ssid dev wifi | egrep '^yes' | cut -d\' -f2
 		elif [ $2 = "con" ] ; then
 			if [ $# -gt 2 ] ; then
+				#todo dont be dumb here lol
 				if [ $3 = "1116" ] ; then
 					sudo nmcli device wifi connect VisionSystem1116-2.4
 				elif [ $3 = "1215" ] ; then
