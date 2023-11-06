@@ -1,4 +1,5 @@
 import socket
+import subprocess
 
 def get_ip():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -11,4 +12,8 @@ def get_ip():
         s.close()
     return IP
 
+def get_ssid():
+    return subprocess.check_output(["iwgetid", "-r"])
+
 #print(get_ip())
+#print(get_ssid())

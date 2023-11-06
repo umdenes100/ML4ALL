@@ -21,8 +21,9 @@ draw.rectangle((0,0,width,height), outline=0, fill=0)
 
 font = ImageFont.load_default()
 ip = get_ip()	
+ssid = get_ssid()
 
-draw.text((10,0), "Jetson", font=font, fill = 255)
+draw.text((10,0), "" + ssid, font=font, fill = 255)
 draw.text((10,10), "IP: " + ip, font=font, fill = 255)
 draw.text((10,20), "Use serial if issues", font=font, fill = 255)
 
