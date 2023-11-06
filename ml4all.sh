@@ -46,7 +46,7 @@ if [ $# -gt 0 ] && [ $1 = "wifi" ] ; then
 		echo "show - display current wifi information"
 		echo "con - connect to a network. Valid inputs: wifi con 1116, wifi con 1215"
 	fi
-	python ip_display/ip_startup.py
+	sudo python ip_display/ip_startup.py
 	exit 0
 fi
 
