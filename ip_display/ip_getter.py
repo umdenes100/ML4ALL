@@ -13,7 +13,11 @@ def get_ip():
     return IP
 
 def get_ssid():
-    return subprocess.check_output(["iwgetid", "-r"])
+    try:
+        ret = subprocess.check_output(["iwgetid", "-r"])
+    except:
+        ret = "Error Getting Wifi :("
+    return ret
 
 #print(get_ip())
 #print(get_ssid())

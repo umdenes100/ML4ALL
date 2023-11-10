@@ -28,12 +28,12 @@ if [ $# -gt 0 ] && [ $1 = "wifi" ] ; then
 			if [ $# -gt 2 ] ; then
 				#todo dont be dumb here lol
 				if [ $3 = "1116" ] ; then
-					sudo nmcli device wifi connect VisionSystem1116-2.4
+					sudo nmcli device wifi connect VisionSystem1116-5G || sudo nmcli device wifi connect VisionSystem1116-2.4
 				elif [ $3 = "1215" ] ; then
-					sudo nmcli device wifi connect VisionSystem1215-2.4
+					sudo nmcli device wifi connect VisionSystem1116-5G || sudo nmcli device wifi connect VisionSystem1215-2.4
 				elif [ $3 = "down" ] ; then
 					network=$(iwgetid -r)
-					sudo nmcli con down ${network}\ 1
+					sudo nmcli con down ${network}\ 1 || sudo nmcli con down ${network} || echo "Error :("
 				else
 					echo "Invalid 3rd argument - please pass 1116 or 1215"
 				fi
