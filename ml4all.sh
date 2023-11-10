@@ -12,7 +12,8 @@ export MPUPDATE=0
 export SAVE=0
 
 if [ $1 = "wifi" ] ; then
-	wifi.sh "$@"
+	~/ML4ALL/wifi.sh "$@"
+	exit 0
 fi
 
 for i in $@
