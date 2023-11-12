@@ -170,8 +170,11 @@
 #error "Camera model not selected"
 #endif
 
+void startCameraServer();
+
 WiFiServer server(80);
 #define mDNS_ID "cam1215-201" // todo better way of doing this lmao
+#define IP_ID 200
 
 void ESPCAMinit() {
     camera_config_t config;
@@ -206,6 +209,11 @@ void ESPCAMinit() {
         config.fb_count = 1;
     }
 
+    #if defined(CAMERA_MODEL_ESP_EYE)
+    pinMode(13, INPUT_PULLUP);
+    pinMode(14, INPUT_PULLUP);
+    #endif
+
     esp_err_t err = esp_camera_init(&config);
     if (err != ESP_OK) {
         Serial.printf("Camera init failed with error 0x%x", err);
@@ -227,22 +235,22 @@ void ESPCAMinit() {
   s->set_hmirror(s, 1);
 #endif
 
-  IPAddress local_IP(192,168,1,IP_ID);
-  IPAddress gateway(192,168,1,1);
-  IPAddress subnet(255,255,255,0);
-
-  if (!WiFi.config(local_IP, gateway, subnet)) {
-    Serial.println("ruh roh static ip");
-  }
-
-  WiFi.begin(WIFI_NETWORK);
-
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-  }
-  Serial.println("");
-  Serial.println("WiFi connected");
+//  IPAddress local_IP(192,168,1,IP_ID);
+//  IPAddress gateway(192,168,1,1);
+//  IPAddress subnet(255,255,255,0);
+//
+//  if (!WiFi.config(local_IP, gateway, subnet)) {
+//    Serial.println("ruh roh static ip");
+//  }
+//
+//  WiFi.begin(WIFI_NETWORK);
+//
+//  while (WiFi.status() != WL_CONNECTED) {
+//    delay(500);
+//    Serial.print(".");
+//  }
+//  Serial.println("");
+//  Serial.println("WiFi connected");
 
   startCameraServer();
 
@@ -250,17 +258,16 @@ void ESPCAMinit() {
   Serial.print(WiFi.localIP());
   Serial.println("' to connect");
 
-  if (!MDNS.begin(mDNS_ID)) {
-    Serial.println("ruh roh MDNS");
-    while(1);
-  }
-  Serial.println("yippie MDNS");
-
-  server.begin();
-  Serial.println("TCP Server started");
-  
-  MDNS.addService("http","tcp",80);
-}
+//  if (!MDNS.begin(mDNS_ID)) {
+//    Serial.println("ruh roh MDNS");
+//    while(1);
+//  }
+//  Serial.println("yippie MDNS");
+//
+//  server.begin();
+//  Serial.println("TCP Server started");
+//  
+//  MDNS.addService("http","tcp",80);
 }
 
 const char* prediction;
