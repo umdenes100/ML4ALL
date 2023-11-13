@@ -49,6 +49,7 @@ SoftwareSerial arduinoSerial;
 #endif
 
 
+#define IP_ID 200
 
 // No touchy below unless the wifi name changes.
 #if ROOM == 1116  //big lab
@@ -122,6 +123,18 @@ void setup() {
 #ifdef DEBUG
     psl("\n\nStarting");
 #endif
+
+#ifdef ML_MODULE
+  IPAddress local_IP(192,168,1,IP_ID);
+  IPAddress gateway(192,168,1,1);
+  IPAddress subnet(255,255,255,0);
+
+  if (!WiFi.config(local_IP, gateway, subnet)) {
+    Serial.println("ruh roh static ip");
+  }
+
+#endif
+
     WiFi.mode(WIFI_STA);
     WiFi.begin(WIFI_NETWORK, NULL);
     while (WiFi.status() != WL_CONNECTED)
