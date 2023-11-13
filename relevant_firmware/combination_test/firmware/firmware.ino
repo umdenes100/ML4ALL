@@ -112,21 +112,11 @@ const byte FLUSH_SEQUENCE[] = {0xFF, 0xFE, 0xFD, 0xFC};
 WebsocketsClient client;
 void setup() {
     // Begin serial communication with Arduino
+    
 #ifdef DEBUG
     Serial.begin(115200);
     Serial.println("DEBUG ENABLED");
     delay(1000);
-#endif
-    //Set up the serial port.
-#ifdef USE_SWSR_AS_ARD
-    arduinoSerial.begin(57600, SERIAL_8N1, 2, 4, false);
-#ifdef DEBUG
-    if (!arduinoSerial) { // If the object did not initialize, then its configuration is invalid
-        psl("Invalid SoftwareSerial pin configuration, check config");
-    }
-#endif
-#else
-    Serial.begin(57600);
 #endif
 
 #ifdef DEBUG
@@ -147,6 +137,20 @@ void setup() {
 #ifdef DEBUG
     psl("Connected to WiFi");
 #endif
+
+
+    //Set up the serial port.
+#ifdef USE_SWSR_AS_ARD
+    arduinoSerial.begin(57600, SERIAL_8N1, 2, 4, false);
+#ifdef DEBUG
+    if (!arduinoSerial) { // If the object did not initialize, then its configuration is invalid
+        psl("Invalid SoftwareSerial pin configuration, check config");
+    }
+#endif
+#else
+    Serial.begin(57600);
+#endif
+
     client.onMessage(onMessageCallback);
     client.onEvent(onEventsCallback);
     client.connect("ws://192.168.1.2:7755");

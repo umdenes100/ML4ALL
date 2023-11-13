@@ -33,58 +33,8 @@ void send() {
 
 #ifdef ML_MODULE
     case OP_ML_PREDICTION: {
-        camera_fb_t * fb = esp_camera_fb_get();
-
-        if (!fb) {
-#ifdef DEBUG
-          Serial.println("Camera capture failed");
-#endif
-          doc["op"] = "image_failure";
-          serializeJson(doc, buff);
-          client.send(buff);
-          return;
-        }
-
-#ifdef DEBUG
-        Serial.println("Camera capture successful!");
-        Serial.println(fb->len);
-#endif
-        doc["op"] = "image_reset";
-        serializeJson(doc, buff);
-#ifdef DEBUG
-        serializeJson(doc, Serial);
-#endif
-        client.send(buff);
-
-        delay(100);
-        size_t size = fb->len;
-        //                Serial.println(size);
-        unsigned packageSize = 2000;
-        char data[packageSize + 1]; // each pixel is 1 byte, should be 2 hex digits surely
-        for (size_t j = 0 ; j < size ; j += packageSize / 2) {
-          uint32_t s = millis();
-          for (size_t i = 0; i < packageSize / 2 && (i + j) < size; i++) { // soooo not cool :(
-            byte pixel = fb->buf[i + j]; // buffer pixel should be 1 byte surely
-            sprintf(data + (2 * i), "%02x", pixel);
-          }
-          doc.clear();
-          doc["op"] = "image_chunk";
-#ifdef DEBUG
-          Serial.println(data);
-#endif
-          doc["chunk"].set(data);
-          doc["index"] = j / (packageSize / 2);
-          serializeJson(doc, buff);
-#ifdef DEBUG
-          serializeJson(doc, Serial);
-          Serial.println(millis() - s);
-#endif
-          delay(50);
-          client.send(buff);
-        }
-        esp_camera_fb_return(fb);
-        doc.clear();
         doc["op"] = "prediction_request";
+        //doc["ESPIP]" = WiFi.localIP();
         serializeJson(doc, buff);
 #ifdef DEBUG
         serializeJson(doc, Serial);
@@ -92,9 +42,8 @@ void send() {
         client.send(buff);
         delay(100);
         return;
-      }
+    }
 #endif
-
     default: {
         client.send("ESP hit default case - invalid Arduino OP");
       }
@@ -146,8 +95,8 @@ void sendAruco() {
 
 void onMessageCallback(WebsocketsMessage message) {
 #ifdef DEBUG
-  //    psl("Got message!");
-  //    putl(message.data());
+//      psl("Got message!");
+//      putl(message.data());
 #endif
   StaticJsonDocument<300> doc;
   deserializeJson(doc, message.data());
@@ -185,6 +134,7 @@ void onMessageCallback(WebsocketsMessage message) {
 #endif
   } else if (strcmp(doc["op"], "prediction") == 0) {
     int pred = doc["prediction"];
+    putl(pred);
     arduinoSerial.write((byte *) &pred, 2);
   }
 }
