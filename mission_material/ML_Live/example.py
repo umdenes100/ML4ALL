@@ -4,7 +4,7 @@ import torch.nn.functional as F
 import JetsonWSClient
 
 print('setup...')
-categories = ['rocks', 'orzo']
+categories = ['orzo', 'rocks']
 device = torch.device('cuda')
 model = torchvision.models.resnet18(pretrained=True)
 model.fc = torch.nn.Linear(512, 2)
@@ -23,5 +23,5 @@ def handler(image):
     return output.argmax()
 
 
-client = JetsonWSClient.JetsonClient(handler, 'Team Name')
+client = JetsonWSClient.JetsonClient(handler, 'Team Swag')
 client.ws.run_forever()

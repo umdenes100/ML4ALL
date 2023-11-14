@@ -9,29 +9,23 @@ import numpy as np
 import io
 import cv2
 
+class NpEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        if isinstance(obj, np.floating):
+            return float(obj)
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return super(NpEncoder, self).default(obj)
+
 import torch
 import torchvision.transforms as transforms
 import torch.nn.functional as F
-
+from utils import preprocess
 
 mean = torch.Tensor([0.485, 0.456, 0.406]).cuda()
 std = torch.Tensor([0.229, 0.224, 0.225]).cuda()
-
-
-def preprocess(image):
-    device = torch.device('cuda')
-    image_str = io.BytesIO(image)
-    #image_str = PIL.Image.frombytes(data=image_str,mode='RGB',size=(224,224),decoder_name='jpeg')
-    picture = PIL.Image.open(image_str)
-    picture.save('./curr.jpeg','JPEG')
-    #print(picture.format)
-    #picture.show()
-    
-    image = transforms.functional.to_tensor(picture).to(device)
-    image.sub_(mean[:, None, None]).div_(std[:, None, None])
-    return image[None, ...]
-
-
 
 class JetsonClient:
     # See first line of this file if you want to edit this function
@@ -39,31 +33,37 @@ class JetsonClient:
         print(message)
         message = json.loads(message)
         if message['op'] == 'prediction_request':
-            losBytes = bytes.fromhex(message['image'])
-            print('entering preprocess')
-            preprocessed = preprocess(losBytes)
-            print('entering handler')
-            results = self.handler(preprocessed)
+            IP = message['ESPIP'][0]
+            print(IP)
+            cap = cv2.VideoCapture('http://' + IP + ":81/stream")
+            if cap.isOpened():
+                print("captured")
+                ret, frame = cap.read()
+            else:
+                print("failed capture")
+                self.ws.send(json.dumps({
+                    "op": "prediction_results",
+                    #"prediction": results
+                    "prediction": -99
+                }))
+                return
+            
+            try:
+                cv2.imwrite('imcurr.jpg', frame)
+            except:
+                print('failed to save image :(')
+            
+            print('entering preprocess...')
+            picture = preprocess(frame)
+            results = self.handler(picture)
+            print(results)
             print('sending')
             self.ws.send(json.dumps({
                 "op": "prediction_results",
                 "prediction": results
-            }))
+            },cls=NpEncoder))
             print('sent :)')
-        if message['op'] == 'image_capture':
-            losBytes = bytes.fromhex(message['image'])
-            print('entering preprocess')
-            image_str = io.BytesIO(losBytes)
-            #image_str = PIL.Image.frombytes(data=image_str,mode='RGB',size=(224,224),decoder_name='jpeg')
-            picture = PIL.Image.open(image_str)
-            if not os.path.isdir('./data/' + message['category']):
-                os.mkdir('./data/' + message['category'])
-            i = 0
-            while os.path.exists('./data/' + message['category'] + '/im' + str(i) + '.jpeg'):
-                i += 1
-            picture.save('./data/' + message['category'] + '/im' + str(i) + '.jpeg','JPEG')
-            print('saved :)')
-        
+
     # See first line of this file if you want to edit this function
     def on_open(self, _):
         print("Opened!")

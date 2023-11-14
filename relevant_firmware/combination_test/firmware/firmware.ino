@@ -13,7 +13,7 @@
 //With USE_SWSR_AS_ARD enabled, it will do the Arduino stuff over a software serial part on D3 and D4. Useful to free up the Serial port for debug messages.
 #define USE_SWSR_AS_ARD
 // WiFi network name
-#define ROOM 1215
+#define ROOM 1116
 // Comment this line OUT if you are compiling for a regular wifi module. Otherwise, make sure this line is in!!!
 #define ML_MODULE
 
@@ -49,7 +49,7 @@ SoftwareSerial arduinoSerial;
 #endif
 
 
-#define IP_ID 200
+#define IP_ID 214
 
 // No touchy below unless the wifi name changes.
 #if ROOM == 1116  //big lab
