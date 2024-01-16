@@ -72,7 +72,7 @@ class JetsonClient:
         print(error)
         
     # See first line of this file if you want to edit this function
-    def __init__(self, handler, id)
+    def __init__(self, handler, id):
         self.jetson_id = str(id)
         self.handler = handler
         # websocket.enableTrace(True)
