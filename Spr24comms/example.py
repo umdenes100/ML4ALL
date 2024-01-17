@@ -3,7 +3,7 @@ import torchvision
 import torch.nn.functional as F
 import JetsonWSClient
 
-def handler(image):
+def handler(image, team_name):
     device = torch.device('cuda')
     model = torchvision.models.resnet18(pretrained=True)
     model.fc = torch.nn.Linear(512, 2) # TODO get the output dim from db

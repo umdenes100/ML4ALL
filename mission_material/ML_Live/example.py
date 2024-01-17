@@ -6,16 +6,30 @@ import JetsonWSClient
 print('setup...')
 categories = ['orzo', 'rocks']
 device = torch.device('cuda')
-model = torchvision.models.resnet18(pretrained=True)
-model.fc = torch.nn.Linear(512, 2)
-model = model.to(device)
-model.load_state_dict(torch.load('we_ball.pth'))
-model.eval()
+
+model1 = torchvision.models.resnet18(pretrained=True)
+model1.fc = torch.nn.Linear(512, 2)
+model1 = model1.to(device)
+model1.load_state_dict(torch.load('model1.pth'))
+model1.eval()
+
+model2 = torchvision.models.resnet18(pretrained=True)
+model2.fc = torch.nn.Linear(512, 2)
+model2 = model2.to(device)
+model2.load_state_dict(torch.load('model2.pth'))
+model2.eval()
+
 print('setup complete!')
 
+prediction_counter = 0
 
 def handler(image):
-    output = model(image)
+    if prediction_counter == 0:
+        output = model1(image)
+        prediction_counter += 1
+    else:
+        output = model2(image)
+
     output = F.softmax(output, dim=1).detach().cpu().numpy().flatten()
     for i, score in enumerate(list(output)):
         print(str(i) + " " + str(score))

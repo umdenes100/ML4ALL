@@ -31,7 +31,9 @@ class JetsonClient:
         message = json.loads(message)
         if message['op'] == 'prediction_request':
             IP = message['ESPIP'][0]
+            team_name = message['team_name']
             print(IP)
+            print(team_name)
             cap = cv2.VideoCapture('http://' + IP + ":81/stream")
             if cap.isOpened():
                 print("captured")
@@ -51,7 +53,7 @@ class JetsonClient:
             
             print('entering preprocess...')
             picture = preprocess(frame)
-            results = self.handler(picture)
+            results = self.handler(picture, team_name)
             print(results)
             print('sending')
             self.ws.send(json.dumps({
