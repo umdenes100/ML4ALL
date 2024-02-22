@@ -3,7 +3,8 @@
 //Tools -> Manage Libraries -> Search for ArduinoWebsockets by Gil Maimon
 #include <ArduinoWebsockets.h>
 #include <Arduino.h>
-
+#include <DNSServer.h>
+#include <WebServer.h>
 #include "helpers.h"
 
 // THINGS YOU CAN SET!!!!
@@ -13,7 +14,7 @@
 //With USE_SWSR_AS_ARD enabled, it will do the Arduino stuff over a software serial part on D3 and D4. Useful to free up the Serial port for debug messages.
 #define USE_SWSR_AS_ARD
 // WiFi network name
-#define ROOM 1215
+#define ROOM 1116
 // Comment this line OUT if you are compiling for a regular wifi module. Otherwise, make sure this line is in!!!
 #define ML_MODULE
 
@@ -48,8 +49,7 @@ SoftwareSerial arduinoSerial;
 #define arduinoSerial Serial
 #endif
 
-
-#define IP_ID 199
+#define CAM_ID 1
 
 // No touchy below unless the wifi name changes.
 #if ROOM == 1116  //big lab
@@ -111,31 +111,33 @@ StaticJsonDocument<JSON_DOC_SIZE> doc;
 const byte FLUSH_SEQUENCE[] = {0xFF, 0xFE, 0xFD, 0xFC};
 
 WebsocketsClient client;
+
+const byte DNS_PORT = 53; 
+DNSServer dnsServer;
+
+WebServer server(85);
+
 void setup() {
     // Begin serial communication with Arduino
-    
 #ifdef DEBUG
     Serial.begin(115200);
     Serial.println("DEBUG ENABLED");
     delay(1000);
-#endif
-
-#ifdef DEBUG
     psl("\n\nStarting");
 #endif
 
 #ifdef ML_MODULE
-  IPAddress local_IP(192,168,1,IP_ID);
-  IPAddress gateway(192,168,1,1);
-  IPAddress subnet(255,255,255,0);
-
-  if (!WiFi.config(local_IP, gateway, subnet)) {
-    Serial.println("ruh roh static ip");
-  }
+//  IPAddress local_IP(192,168,1,CAM_ID);
+//  IPAddress gateway(192,168,1,1);
+//  IPAddress subnet(255,255,255,0);
+//
+//  if (!WiFi.config(local_IP, gateway, subnet)) {
+//    Serial.println("ruh roh static ip");
+//  }
 
 #endif
 
-    WiFi.mode(WIFI_STA);
+    WiFi.mode(WIFI_AP_STA);
     WiFi.begin(WIFI_NETWORK, NULL);
     while (WiFi.status() != WL_CONNECTED)
     {
@@ -151,17 +153,26 @@ void setup() {
     psl("Connected to WiFi");
 #endif
 
+    IPAddress apIP(8, 8, 8, 8);
+    IPAddress netMsk(255, 255, 255, 0);
+
+    WiFi.softAPConfig(apIP, apIP, netMsk);
+
+
+    char buff[50];
+    sprintf(buff, "OTVCAM-%d", CAM_ID);
+    WiFi.softAP(buff, NULL);
+
+    dnsServer.setErrorReplyCode(DNSReplyCode::NoError); 
+    dnsServer.start(DNS_PORT, "*", apIP);
+    
 
     //Set up the serial port.
-#ifdef USE_SWSR_AS_ARD
-    arduinoSerial.begin(57600, SERIAL_8N1, 2, 4, false);
+    arduinoSerial.begin(57600, SERIAL_8N1, 2, 12, false);
 #ifdef DEBUG
     if (!arduinoSerial) { // If the object did not initialize, then its configuration is invalid
         psl("Invalid SoftwareSerial pin configuration, check config");
     }
-#endif
-#else
-    Serial.begin(57600);
 #endif
 
     client.onMessage(onMessageCallback);
@@ -185,9 +196,35 @@ void setup() {
 #ifdef ML_MODULE
     ESPCAMinit();
 #endif
+
+    server.on("/", handleRoot);
+    server.begin(); // Web server start
+    Serial.println("HTTP server started");
+}
+
+
+void handleRoot() {
+  if (captivePortal()) { 
+    return;
+  }
+}
+
+boolean captivePortal() {
+  Serial.print(server.hostHeader());
+//  if (!isIp(server.hostHeader())) {
+//    Serial.println("Request redirected to captive portal");
+//    server.sendHeader("Location", String("http://") + toStringIp(server.client().localIP()), true);
+//    server.send(302, "text/plain", "");   
+//    server.client().stop(); 
+//    return true;
+//  }
+  return false;
 }
 
 void loop() {
+
+    dnsServer.processNextRequest();
+    
     //Read in data from Arduino
     if (arduinoSerial.available()) {
         buff[buff_index++] = arduinoSerial.read();

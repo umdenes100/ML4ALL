@@ -2,6 +2,7 @@ import torch
 import torchvision
 import torch.nn.functional as F
 import JetsonWSClient
+import os
 
 def handler(image, team_name):
     
@@ -33,4 +34,3 @@ def handler(image, team_name):
 
 
 client = JetsonWSClient.JetsonClient(handler, 150)
-client.ws.run_forever()

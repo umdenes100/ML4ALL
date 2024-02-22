@@ -5,7 +5,6 @@
 #include "fb_gfx.h"
 #include "fd_forward.h"
 #include "fr_forward.h"
-#include <ESPmDNS.h>
 
 #ifdef USE_SWSR_AS_ARD
 #define arduinoSerial Serial2
@@ -172,10 +171,6 @@
 
 void startCameraServer();
 
-WiFiServer server(80);
-#define mDNS_ID "cam1215-201" // todo better way of doing this lmao
-#define IP_ID 200
-
 void ESPCAMinit() {
     camera_config_t config;
     config.ledc_channel = LEDC_CHANNEL_0;
@@ -235,39 +230,11 @@ void ESPCAMinit() {
   s->set_hmirror(s, 1);
 #endif
 
-//  IPAddress local_IP(192,168,1,IP_ID);
-//  IPAddress gateway(192,168,1,1);
-//  IPAddress subnet(255,255,255,0);
-//
-//  if (!WiFi.config(local_IP, gateway, subnet)) {
-//    Serial.println("ruh roh static ip");
-//  }
-//
-//  WiFi.begin(WIFI_NETWORK);
-//
-//  while (WiFi.status() != WL_CONNECTED) {
-//    delay(500);
-//    Serial.print(".");
-//  }
-//  Serial.println("");
-//  Serial.println("WiFi connected");
-
   startCameraServer();
 
   Serial.print("Camera Ready! Use 'http://");
   Serial.print(WiFi.localIP());
   Serial.println("' to connect");
-
-//  if (!MDNS.begin(mDNS_ID)) {
-//    Serial.println("ruh roh MDNS");
-//    while(1);
-//  }
-//  Serial.println("yippie MDNS");
-//
-//  server.begin();
-//  Serial.println("TCP Server started");
-//  
-//  MDNS.addService("http","tcp",80);
 }
 
 const char* prediction;
